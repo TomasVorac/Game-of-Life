@@ -1,5 +1,5 @@
 # Game-of-Life
-Projekt - zažij emebedit
+Projekt - zažij embedit
 
 ### Starting the application:
 -  open **index.html** in a web browser
