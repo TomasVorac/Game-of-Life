@@ -6,7 +6,7 @@ let setRandomLiveCell = (matrix, precentLive) => {
             if (Math.random() < precentLive) {
                 matrix[i][j] = true;
             }
-        })
+        });
     });
     return matrix;
-}
+};
