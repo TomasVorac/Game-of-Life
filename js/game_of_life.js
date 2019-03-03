@@ -1,13 +1,11 @@
 // create new init matrix, all cells are dead
 let createNewMatrix = (r, c) => {
-    var matrix = [];
-    for (i = 0; i < r; i++) {
-        matrix[i] = [];
-        for (j = 0; j < c; j++) {
-            matrix[i][j] = false
-        }
+    let matrix = [];
+    for (i=0; i<r; i++){
+        col = Array(c).fill(false);
+        matrix.push(col);
     }
-    return matrix
+    return matrix;
 }
 
 // return neigborhood area for cell
@@ -30,9 +28,9 @@ let transformation = (oldMatrix) => {
     const countRow = oldMatrix.length;
     const countColumn = oldMatrix[0].length;
     let nextGenMatrix = createNewMatrix(countRow, countColumn);
-    for (i = 0; i < countRow; i++) {
-        for (j = 0; j < countColumn; j++) {
-            let liveNeighbors = 0;
+    oldMatrix.forEach(function(row, i){
+        row.forEach(function(el, j){
+            let liveNeighbors = 0
             row = neighborhoodArea(i, countRow - 1);
             col = neighborhoodArea(j, countColumn - 1);
             for (r = row.from; r <= row.to; r++) {
@@ -45,18 +43,19 @@ let transformation = (oldMatrix) => {
             if (((liveNeighbors == 2 || liveNeighbors == 3) && oldMatrix[i][j] == true) || (liveNeighbors == 3 && oldMatrix[i][j] == false)) {
                 nextGenMatrix[i][j] = true
             }
-        }
-    }
+        })
+    })
     return nextGenMatrix
 }
 
 let inputIsNumber = (...arg) => {
-    for (i = 0; i < arg.length; i++) {
-        if (isNaN(arg[i])) {
+    return arg.every(function (value) {
+        if (isNaN(value)) {
             return false
+        } else {
+            return true
         }
-    }
-    return true
+    })
 }
 
 // creates and writes matrices for all generations
