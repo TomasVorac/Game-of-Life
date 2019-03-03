@@ -1,5 +1,5 @@
 // create new init matrix, all cells are dead
-var createNewMatrix = (r, c) => {
+let createNewMatrix = (r, c) => {
     var matrix = [];
     for (i = 0; i < r; i++) {
         matrix[i] = [];
@@ -11,7 +11,7 @@ var createNewMatrix = (r, c) => {
 }
 
 // return neigborhood area for cell
-var neighborhoodArea = (i, maximum) => {
+let neighborhoodArea = (i, maximum) => {
     if (i - 1 < 0) {
         from = 0
     } else {
@@ -26,7 +26,7 @@ var neighborhoodArea = (i, maximum) => {
 }
 
 // transforms one matrix into another
-var transformation = (oldMatrix) => {
+let transformation = (oldMatrix) => {
     const countRow = oldMatrix.length;
     const countColumn = oldMatrix[0].length;
     let nextGenMatrix = createNewMatrix(countRow, countColumn);
@@ -50,7 +50,7 @@ var transformation = (oldMatrix) => {
     return nextGenMatrix
 }
 
-var inputIsNumber = (...arg) => {
+let inputIsNumber = (...arg) => {
     for (i = 0; i < arg.length; i++) {
         if (isNaN(arg[i])) {
             return false
@@ -60,7 +60,7 @@ var inputIsNumber = (...arg) => {
 }
 
 // creates and writes matrices for all generations
-var main = (numberOfGen, inputMatrix) => {
+let main = (numberOfGen, inputMatrix) => {
     if (inputIsNumber(numberOfGen) && (inputMatrix.length && inputMatrix[0].length)) {
         let matrix = inputMatrix;
         console.log('Generation: 0');
@@ -78,7 +78,7 @@ var main = (numberOfGen, inputMatrix) => {
 }
 
 // create new random matrix for zero generation (setRandomLiveCell-random_matrix.js)
-var createRandomMatrix = (numRowMatrix = 10, numColMatrix = 10, precentLiveCellZeroGen = 0.5) => {
+let createRandomMatrix = (numRowMatrix = 10, numColMatrix = 10, precentLiveCellZeroGen = 0.5) => {
     if (inputIsNumber(numRowMatrix, numColMatrix, precentLiveCellZeroGen) && (precentLiveCellZeroGen <= 1 && precentLiveCellZeroGen >= 0)) {
         return setRandomLiveCell(createNewMatrix(numRowMatrix, numColMatrix), precentLiveCellZeroGen)
     } else {
